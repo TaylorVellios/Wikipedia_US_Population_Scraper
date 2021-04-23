@@ -4,6 +4,9 @@ import os
 import pandas as pd
 import datetime
 
+print('Scraping.', end='')
+
+
 def terminal_sep(string):
     dashes = 50 - (len(string)//2)
     x = '-'
@@ -120,12 +123,12 @@ def US_States_Scrape():
     US_States_DF['2010 Pop.'] = [i[:-4] if '[' in i else i for i in US_States_DF['2010 Pop.']]
 
     #converting to numeric values
-    US_States_DF['2020 Pop.'] = US_States_DF['2020 Pop.'].str.replace(',','').apply(pd.to_numeric)
-    US_States_DF['2010 Pop.'] = US_States_DF['2010 Pop.'].str.replace(',','').apply(pd.to_numeric)
+    US_States_DF['2020 Pop.'] = US_States_DF['2020 Pop.'].apply(lambda x: x.replace(',','')).apply(pd.to_numeric)
+    US_States_DF['2010 Pop.'] = US_States_DF['2010 Pop.'].apply(lambda x: x.replace(',','')).apply(pd.to_numeric)
     US_States_DF['Pop. Per Electoral Vote'] = US_States_DF['Pop. Per Electoral Vote'].str.replace(',','').apply(pd.to_numeric)
 
-    US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].str.replace('*','').str.replace(' ','')
-    US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].str.replace('(','').str.replace(')','')
+    US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].apply(lambda x: x.replace('*','')).apply(lambda x: x.replace(' ',''))
+    US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].apply(lambda x: x.replace('(','')).apply(lambda x: x.replace(')',''))
 
     US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].apply(lambda x: eval(x)).apply(pd.to_numeric)
 
@@ -133,9 +136,59 @@ def US_States_Scrape():
     return US_States_DF
 
 # --------------------------------------------------------------------------------------------------------------------------------
+
+def world_population_scrape():
+    target_url = 'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population'
+    
+    page = requests.get(target_url)
+    soup = BeautifulSoup(page.content, 'html5lib')
+    
+    whole_table = soup.find(class_="wikitable sortable plainrowheaders")
+    columns = whole_table.find_all('th')
+
+# Dict comprehension for dictionary output
+    col = [v.text.strip('\n') for v in columns[:6]]
+    table_to_df = {v.text.strip('\n'):[] for k,v in enumerate(columns[:6])}
+
+    rows = whole_table.find_all('tr')
+    for i in rows[1:]:
+        result = i.text.split('\n')
+        if len(result)==10:
+            result.pop(6)
+        if result[2]=='\xa0World':
+            break
+        
+        table_to_df[col[0]].append(result[1])
+        table_to_df[col[1]].append(result[3].strip('\xa0'))
+        table_to_df[col[2]].append(result[4])
+        table_to_df[col[3]].append(result[5])
+        table_to_df[col[4]].append(result[6])
+        table_to_df[col[5]].append(result[7])
+    
+    #make dataframe
+    world_pop_df = pd.DataFrame(table_to_df)
+
+    #remove superscript
+    world_pop_df['Country(or dependent territory)'] = [i.split('[')[0] if '[' in i else i for i in world_pop_df['Country(or dependent territory)']]
+    world_pop_df['Source(official or United Nations)'] = [i.split('[')[0] if '[' in i else i for i in world_pop_df['Source(official or United Nations)']]
+    world_pop_df['Population'] = world_pop_df['Population'].apply(lambda x: x.replace(',','')).apply(pd.to_numeric)
+    world_pop_df['% of world'] = world_pop_df['% of world'].apply(lambda x: x.replace('%','')).apply(pd.to_numeric)
+    
+    world_pop_df['Rank'] = world_pop_df['Rank'].apply(lambda x: x.replace('–','None'))
+    return world_pop_df
+
+
+# --------------------------------------------------------------------------------------------------------------------------------
+
 # Pulling Data from Wikipedia
 counties_df = US_Counties_Scrape()
+print('.', end='')
+
 states_df = US_States_Scrape()
+print('.', end='')
+
+world_df = world_population_scrape()
+print('.')
 
 print()
 print(terminal_sep('Checking for NaN Values - US Counties'))
@@ -145,12 +198,14 @@ print(f'\n{counties_df.isna().sum()}\n\n')
 print(terminal_sep('Checking for NaN Values - US States'))
 print(f'\n{states_df.isna().sum()}\n\n')
 
+print(terminal_sep('Checking for NaN Values - World'))
+print(f'\n{world_df.isna().sum()}\n\n')
 
 print(terminal_sep('Saving as .csv to /Wikipedia_Data/'))
 print()
 counties_output_name = f'US_County_Population_WikiScrape_{date_out()}.csv'
 states_output_name = f'US_State_Population_Gov_WikiScrape_{date_out()}.csv'
-
+world_output_name = f'World_Population_WikiScrape_{date_out()}.csv'
 
 try:
     counties_df.to_csv(f'Wikipedia_Data/{counties_output_name}', index=False)
@@ -158,12 +213,12 @@ except:
     os.mkdir('Wikipedia_Data')
     counties_df.to_csv(f'Wikipedia_Data/{counties_output_name}', index=False)
 
-print(f'\nUS_Counties Saved to /Wikipedia_Data/{counties_output_name}\n')
+print(f'US_Counties Saved to /Wikipedia_Data/{counties_output_name}')
 
-try:
-    states_df.to_csv(f'Wikipedia_Data/{states_output_name}', index=False)
-except:
-    os.mkdir('Wikipedia_Data')
-    states_df.to_csv(f'Wikipedia_Data/{states_output_name}', index=False)
 
-print(f'\nUS_States Saved to /Wikipedia_Data/{states_output_name}\n')
+states_df.to_csv(f'Wikipedia_Data/{states_output_name}', index=False)
+print(f'US_States Saved to /Wikipedia_Data/{states_output_name}')
+
+
+world_df.to_csv(f'Wikipedia_Data/{world_output_name}', index=False)
+print(f'World_Population Saved to /Wikipedia_Data/{world_output_name}')
