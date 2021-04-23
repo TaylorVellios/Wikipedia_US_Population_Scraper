@@ -8,12 +8,15 @@ This script takes no user inputs, run Wikipedia_US_Population_Scraper.py in term
 * Requests
 * os
 
-
 <br></br>
 ### Purpose
 The following webpages contain population data for the United States by State, and by County. By running this script, you will receive filtered and modified copies of the wikitables available below:<br></br>
 [US State Population/Government Data](https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States_by_population)<br></br>
+![3](https://user-images.githubusercontent.com/14188580/115887729-d6360680-a417-11eb-967d-c5605ac6954f.PNG)
+
 [US County Population Data](https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents)
+![4](https://user-images.githubusercontent.com/14188580/115887739-d8986080-a417-11eb-9d50-5d4aad3bfe49.PNG)
+
 <br></br>
 Some columns for US_State_Data on Wikipedia are being ignored for the .csv output. Data reached by simple calculations or sorting can be done by the user.<br>
 Output files will be saved in an automatically created directory named /Wikipedia_Data/ <br></br>
