@@ -1,15 +1,16 @@
-# Wikipedia World/US State/US County Population Scraper
+# Wikipedia World / US State / US County Population Scraper
+
+### Purpose
 To pull table data from Wikipedia, transform the results, and save them locally to .csv<br>
-This script takes no user inputs, run Wikipedia_US_Population_Scraper.py in terminal and it will complete in a second or two.
+This script takes no user inputs, run Wikipedia_Population_Scraper.py in terminal and it will complete in a few seconds.
 <br></br>
 ### Dependencies
 * BeautifulSoup
 * Pandas
 * Requests
 * os
-
 <br></br>
-### Purpose
+### Results
 The following webpages contain population data for the US by State, US by County, and World by Country. By running this script, you will receive filtered and modified copies of the wikitables available below:<br></br>
 [US State Population/Government Data](https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States_by_population)<br></br>
 ![3](https://user-images.githubusercontent.com/14188580/115887729-d6360680-a417-11eb-967d-c5605ac6954f.PNG)
