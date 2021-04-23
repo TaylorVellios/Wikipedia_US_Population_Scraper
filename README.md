@@ -22,7 +22,8 @@ Some columns for US_State_Data on Wikipedia are being ignored for the .csv outpu
 the fourth column for County Data is being dropped as well.<br>
 Output files will be saved in an automatically created directory named /Wikipedia_Data/ <br></br>
 #### Samples of .csv Outputs:
-![1](https://user-images.githubusercontent.com/14188580/115885169-498a4900-a415-11eb-9748-89a169350743.PNG)
+![1](https://user-images.githubusercontent.com/14188580/115888845-003bf880-a419-11eb-9fb6-1b5ddbd4eb8a.PNG)
+
 ![2](https://user-images.githubusercontent.com/14188580/115885177-4abb7600-a415-11eb-889f-075f251a6370.PNG)
 <br></br>
 
