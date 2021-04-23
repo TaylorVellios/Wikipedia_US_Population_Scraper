@@ -117,7 +117,7 @@ def US_States_Scrape():
         
     #handling superscripts
     US_States_DF['2020 Pop.'] = [i[:-4] if '[' in i else i for i in US_States_DF['2020 Pop.']]
-    US_States_DF['2010 Pop.'] = [i[:-4] if '[' in i else i for i in US_States_DF['2020 Pop.']]
+    US_States_DF['2010 Pop.'] = [i[:-4] if '[' in i else i for i in US_States_DF['2010 Pop.']]
 
     #converting to numeric values
     US_States_DF['2020 Pop.'] = US_States_DF['2020 Pop.'].str.replace(',','').apply(pd.to_numeric)
