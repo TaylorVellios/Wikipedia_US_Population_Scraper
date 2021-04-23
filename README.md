@@ -18,7 +18,8 @@ The following webpages contain population data for the United States by State, a
 ![4](https://user-images.githubusercontent.com/14188580/115887739-d8986080-a417-11eb-9d50-5d4aad3bfe49.PNG)
 
 <br></br>
-Some columns for US_State_Data on Wikipedia are being ignored for the .csv output. Data reached by simple calculations or sorting can be done by the user.<br>
+Some columns for US_State_Data on Wikipedia are being ignored for the .csv output. Data reached by simple calculations or sorting can be done by the user. Similarly,
+the fourth column for County Data is being dropped as well.<br>
 Output files will be saved in an automatically created directory named /Wikipedia_Data/ <br></br>
 #### Samples of .csv Outputs:
 ![1](https://user-images.githubusercontent.com/14188580/115885169-498a4900-a415-11eb-9748-89a169350743.PNG)
@@ -29,5 +30,10 @@ Output files will be saved in an automatically created directory named /Wikipedi
 While Wikipedia may not be the most academically reliable source for data, this script will give anyone a good jumping-off point for State/County based code or analyses.<br>
 High traffic Wikipedia pages such as the ones being scraped here are meticulously moderated as well as frequently trolled: [See Wiki History](https://en.wikipedia.org/w/index.php?title=List_of_states_and_territories_of_the_United_States_by_population&action=history)<br></br>
 
+It will be interesting to see if there are significant changes in population data from this source on a day-to-day basis.<br>
+Since this script saves each .csv by adding the date it is run, it will be easy to locate data discrepancies.<br></br>
+
 Due to the nature of HTML scraping, this script will not work as intended should a column be added to either WikiTable.<br>
-As of 4.23.2021, there are no issues. I will be exploring possible routes that may require the use of every table header.
+As of 4.23.2021, there are no issues. I will be exploring possible routes that may require the use of every table header.<br></br>
+
+
