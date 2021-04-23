@@ -35,6 +35,6 @@ It will be interesting to see if there are significant changes in population dat
 Since this script saves each .csv by adding the date it is run, it will be easy to locate data discrepancies.<br></br>
 
 Due to the nature of HTML scraping, this script will not work as intended should a column be added to either WikiTable.<br>
-As of 4.23.2021, there are no issues. I will be exploring possible routes that may require the use of every table header.<br></br>
+As of 4.23.2021, there are no issues. I will be exploring possible routes for future-proofing that may require the use of every table header.<br></br>
 
 
