@@ -1,8 +1,9 @@
 # Wikipedia World / US State / US County Population Scraper
 
 ### Purpose
-To pull table data from Wikipedia, transform the results, and save them locally to .csv<br>
+To pull table data from Wikipedia, transform the results, and save them locally to .csv with MAXIMUM effort.<br>
 This script takes no user inputs, run Wikipedia_Population_Scraper.py in terminal and it will complete in a few seconds.
+
 <br></br>
 ### Dependencies
 * BeautifulSoup
