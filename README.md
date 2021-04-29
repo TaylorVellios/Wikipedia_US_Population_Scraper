@@ -1,8 +1,16 @@
 # Wikipedia World / US State / US County Population Scraper
 
 ### Purpose
-To pull table data from Wikipedia, transform the results, and save them locally to .csv with MAXIMUM effort.<br>
-This script takes no user inputs, run Wikipedia_Population_Scraper.py in terminal and it will complete in a few seconds.
+To pull table data from Wikipedia, transform the results, and save them locally to .csv with MAXIMUM effort.</br>
+This script takes no user inputs, run either python script in terminal and it will complete in a few seconds.</br>
+
+There are two .py files in this repository:
+* Wikipedia_Population_Scraper_Soup.py
+* Wikipedia_Population_Scraper_Pandas.py
+
+This project was designed with two reasons in mind:
+1. To create a light and reliable script for obtaining population data
+2. To investigate performance differences between webscraping with BeautifulSoup and Pandas.read_html
 
 <br></br>
 ### Dependencies
@@ -13,7 +21,7 @@ This script takes no user inputs, run Wikipedia_Population_Scraper.py in termina
 <br></br>
 ### Results
 The following webpages contain population data for the US by State, US by County, and World by Country. By running this script, you will receive filtered and modified copies of the wikitables available below:<br></br>
-[US State Population/Government Data](https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States_by_population)<br></br>
+[US State Population/Government Data](https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States_by_population)
 ![3](https://user-images.githubusercontent.com/14188580/115887729-d6360680-a417-11eb-967d-c5605ac6954f.PNG)
 
 [US County Population Data](https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents)
@@ -43,6 +51,6 @@ It will be interesting to see if there are significant changes in population dat
 Since this script saves each .csv by adding the date it is run, it will be easy to locate data discrepancies.<br></br>
 
 Due to the nature of HTML scraping, this script will not work as intended should a column be added to either WikiTable.<br>
-As of 4.23.2021, there are no issues. I will be exploring possible routes for future-proofing that may require the use of every table header.<br></br>
+As of 4.29.2021, there are no issues. I will be exploring possible routes for future-proofing that may require the use of every table header.<br></br>
 
 
