@@ -68,5 +68,6 @@ try:
     print('Successfully Wrote US State Population Data to /Wikipedia_Data')
 except:
     print('*****Failed to Write World Population Data*****')
+    
 end_time = time.time()
 print(f"Elapsed Time: {round(end_time - start_time, 2)} Seconds.\n")

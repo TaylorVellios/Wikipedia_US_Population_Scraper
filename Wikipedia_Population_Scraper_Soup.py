@@ -182,21 +182,26 @@ counties_output_name = f'US_County_Population_WikiScrape_{today}.csv'
 states_output_name = f'US_State_Population_Gov_WikiScrape_{today}.csv'
 world_output_name = f'World_Population_WikiScrape_{today}.csv'
 
+if 'Wikipedia_Data' not in os.listdir():
+    os.mkdir('Wikipedia_Data')
+try:
+    world_df.to_csv(f'Wikipedia_Data/{world_output_name}', index=False)
+    print('Successfully Wrote World Population Data to /Wikipedia_Data')
+except:
+    print('*****Failed to Write World Population Data*****')
+
 try:
     counties_df.to_csv(f'Wikipedia_Data/{counties_output_name}', index=False)
+    print('Successfully Wrote US County Population Data to /Wikipedia_Data')
 except:
-    os.mkdir('Wikipedia_Data')
-    counties_df.to_csv(f'Wikipedia_Data/{counties_output_name}', index=False)
+    print('*****Failed to Write US County Population Data*****')
+    pass
 
-print(f'US_Counties Saved to /Wikipedia_Data/{counties_output_name}')
-
-
-states_df.to_csv(f'Wikipedia_Data/{states_output_name}', index=False)
-print(f'US_States Saved to /Wikipedia_Data/{states_output_name}')
-
-
-world_df.to_csv(f'Wikipedia_Data/{world_output_name}', index=False)
-print(f'World_Population Saved to /Wikipedia_Data/{world_output_name}')
-
+try:
+    states_df.to_csv(f'Wikipedia_Data/{states_output_name}', index=False)
+    print('Successfully Wrote US State Population Data to /Wikipedia_Data')
+except:
+    print('*****Failed to Write World Population Data*****')
+    
 end_time = time.time()
 print(f'Elapsed Time: {round(end_time - start_time,2)} Seconds.\n')
