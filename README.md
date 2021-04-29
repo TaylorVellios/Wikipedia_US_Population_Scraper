@@ -12,6 +12,8 @@ This project was designed with two reasons in mind:
 1. To create a light and reliable script for obtaining population data
 2. To investigate performance differences between webscraping with BeautifulSoup and Pandas.read_html
 
+![Capture](https://user-images.githubusercontent.com/14188580/116591610-a178f200-a8e4-11eb-97bd-5044d0f11049.PNG)
+
 <br></br>
 ### Dependencies
 * BeautifulSoup
