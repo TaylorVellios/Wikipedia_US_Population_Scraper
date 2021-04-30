@@ -42,7 +42,7 @@ Output files will be saved in an automatically created directory named /Wikipedi
 
 <br></br>
 
-#### Significance of Current Data - Warning of Future Issues
+### Significance of Current Data - Warning of Future Issues
 The most surprising result of writing these scripts is the the speed differences between them.</br>
 As seen in the image above, the script based around BeautifulSoup takes ~2sec to complete while Pandas nears 3sec.</br>
 The lengths of these scrips is not even close.
@@ -51,7 +51,7 @@ The lengths of these scrips is not even close.
 
 While the practical use of each is not greatly inhibited by an extra half second of processing time, I am surprised that pandas.read_html() takes longer to parse than manually creating a dictionary based on BeautifulSoup.find_all()</br>
 
-
+### Secondly
 While Wikipedia may not be the most academically reliable source for data, this script will give anyone a good jumping-off point for State/County based code or analyses.<br>
 High traffic Wikipedia pages such as the ones being scraped here are meticulously moderated as well as frequently trolled: [See Wiki History](https://en.wikipedia.org/w/index.php?title=List_of_states_and_territories_of_the_United_States_by_population&action=history)<br></br>
 
