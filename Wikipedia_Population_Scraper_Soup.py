@@ -60,15 +60,21 @@ def US_States_Scrape():
     rows = table_data.find_all('tr')
 
     Us_States = {
+    'Rank_2020':[],
+    'Rank_2010':[],
     'State':[],
     '2020 Pop.':[],
     '2010 Pop.':[],
-    'Pop. Change':[],
+    'Pop_Change_%':[],
+    'Pop_Change_#':[],
     'House Rep. Seats':[],
     '% of Total Seats':[],
     'Pop. Per Electoral Vote':[],
+    'Census_Pop_Per_Seat_2020':[],
+    'Census_Pop_Per_Seat_2010':[],
     '% of Total Pop. 2020': [],
     '% of Total Pop. 2010': [],
+    '% of Total Pop. Change': [],
     '% of Electoral College': []
     }
 
@@ -76,19 +82,28 @@ def US_States_Scrape():
         row_data = i.find_all('td')
         data_list = [x.text.strip('\n') for x in row_data]
         
+        Us_States['Rank_2020'].append(data_list[0])
+        Us_States['Rank_2010'].append(data_list[0])
         Us_States['State'].append(data_list[2])
         Us_States['2020 Pop.'].append(data_list[3])
         Us_States['2010 Pop.'].append(data_list[4])
-        Us_States['Pop. Change'].append(data_list[5])
+        Us_States['Pop_Change_%'].append(data_list[5])
+        Us_States['Pop_Change_#'].append(data_list[6])
         Us_States['House Rep. Seats'].append(data_list[7])
         Us_States['% of Total Seats'].append(data_list[8])
         Us_States['Pop. Per Electoral Vote'].append(data_list[9])
+        Us_States['Census_Pop_Per_Seat_2020'].append(data_list[10])
+        Us_States['Census_Pop_Per_Seat_2010'].append(data_list[11])
         Us_States['% of Total Pop. 2020'].append(data_list[12])
         Us_States['% of Total Pop. 2010'].append(data_list[13])
+        Us_States['% of Total Pop. Change'].append(data_list[14])
         Us_States['% of Electoral College'].append(data_list[15])
     
     #creating the dataframe
     US_States_DF = pd.DataFrame(Us_States)
+
+    for i in ['Pop_Change_%','Pop_Change_#','% of Total Seats','% of Total Pop. Change']:
+        US_States_DF[i] = US_States_DF[i].str.replace('–‍','-').apply(lambda x: x.replace('–','-'))
 
     #cleaning string characters - adding 0's and eliminating en dashes
     US_States_DF['Pop. Per Electoral Vote'] = US_States_DF['Pop. Per Electoral Vote'].str.replace('—','0')
@@ -98,28 +113,17 @@ def US_States_Scrape():
     US_States_DF['% of Total Pop. 2010'] = US_States_DF['% of Total Pop. 2010'].str.replace('—','0.0%')
     US_States_DF['% of Total Seats'] = ['0.0%' if len(i)==0 else i for i in US_States_DF['% of Total Seats']]
     US_States_DF['State'] = US_States_DF['State'].str.replace('\xa0','')
-
-
-    #converting all % based columns to floats
-    percentage_columns = [i for h,i in enumerate(US_States_DF.columns) if '%' in str(US_States_DF.iloc[2,h])]
-    for i in percentage_columns:
-        US_States_DF[i] = US_States_DF[i].str.replace('%','').str.replace('–','-').str.replace('\u200d','').apply(pd.to_numeric)
-
         
     #handling superscripts
-    US_States_DF['2020 Pop.'] = [i[:-4] if '[' in i else i for i in US_States_DF['2020 Pop.']]
-    US_States_DF['2010 Pop.'] = [i[:-4] if '[' in i else i for i in US_States_DF['2010 Pop.']]
+    US_States_DF['2020 Pop.'] = US_States_DF['2020 Pop.'].str.replace('\[.+\]','',regex=True).apply(lambda x: x.replace(',',''))
+    US_States_DF['2010 Pop.'] = US_States_DF['2010 Pop.'].str.replace('\[.+\]','',regex=True).apply(lambda x: x.replace(',',''))
 
-    #converting to numeric values
-    US_States_DF['2020 Pop.'] = US_States_DF['2020 Pop.'].apply(lambda x: x.replace(',','')).apply(pd.to_numeric)
-    US_States_DF['2010 Pop.'] = US_States_DF['2010 Pop.'].apply(lambda x: x.replace(',','')).apply(pd.to_numeric)
-    US_States_DF['Pop. Per Electoral Vote'] = US_States_DF['Pop. Per Electoral Vote'].str.replace(',','').apply(pd.to_numeric)
+    US_States_DF['Pop. Per Electoral Vote'] = US_States_DF['Pop. Per Electoral Vote'].str.replace(',','')
 
     US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].apply(lambda x: x.replace('*','')).apply(lambda x: x.replace(' ',''))
     US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].apply(lambda x: x.replace('(','')).apply(lambda x: x.replace(')',''))
 
-    US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].apply(lambda x: eval(x)).apply(pd.to_numeric)
-
+    US_States_DF['House Rep. Seats'] = US_States_DF['House Rep. Seats'].apply(lambda x: eval(x))
     
     return US_States_DF
 
@@ -200,8 +204,9 @@ except:
 try:
     states_df.to_csv(f'Wikipedia_Data/{states_output_name}', index=False)
     print('Successfully Wrote US State Population Data to /Wikipedia_Data')
-except:
+except Exception as exc:
     print('*****Failed to Write World Population Data*****')
+    print(exc)
     
 end_time = time.time()
 print(f'Elapsed Time: {round(end_time - start_time,2)} Seconds.\n')
