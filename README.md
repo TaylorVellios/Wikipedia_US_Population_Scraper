@@ -8,12 +8,11 @@ There are two .py files in this repository:
 * Wikipedia_Population_Scraper_Soup.py
 * Wikipedia_Population_Scraper_Pandas.py
 
-This project was designed with two reasons in mind:
+This project was designed with two purposes in mind:
 1. To create a light and reliable script for obtaining population data
 2. To investigate performance differences between webscraping with BeautifulSoup and Pandas.read_html
 
-![Capture](https://user-images.githubusercontent.com/14188580/116591610-a178f200-a8e4-11eb-97bd-5044d0f11049.PNG)
-
+![Capture](https://user-images.githubusercontent.com/14188580/116706393-35a19280-a993-11eb-86ba-a1eb83a57edb.PNG)
 <br></br>
 ### Dependencies
 * BeautifulSoup
@@ -33,8 +32,6 @@ The following webpages contain population data for the US by State, US by County
 ![5](https://user-images.githubusercontent.com/14188580/115922069-072b3100-a442-11eb-8e38-d0d1f20da88b.PNG)
 
 <br></br>
-Some columns for US_State_Data on Wikipedia are being ignored for the .csv output. Data reached by simple calculations or sorting can be done by the user. Similarly,
-the fourth column for County Data is being dropped as well.<br>
 Output files will be saved in an automatically created directory named /Wikipedia_Data/ <br></br>
 #### Samples of .csv Outputs:
 ![1](https://user-images.githubusercontent.com/14188580/115888845-003bf880-a419-11eb-9fb6-1b5ddbd4eb8a.PNG)
@@ -46,13 +43,22 @@ Output files will be saved in an automatically created directory named /Wikipedi
 <br></br>
 
 #### Significance of Current Data - Warning of Future Issues
+The most surprising result of writing these scripts is the the speed differences between them.</br>
+As seen in the image above, the script based around BeautifulSoup takes ~2sec to complete while Pandas nears 3sec.</br>
+The lengths of these scrips is not even close.
+* Wikipedia_Population_Scraper_Soup.py ---> 212 Lines of Code
+* Wikipedia_Population_Scraper_Pandas.py ---> 73 Lines of Code
+
+While the practical use of each is not greatly inhibited by an extra half second of processing time, I am surprised that pandas.read_html() takes longer to parse than manually creating a dictionary based on BeautifulSoup.find_all()</br>
+
+
 While Wikipedia may not be the most academically reliable source for data, this script will give anyone a good jumping-off point for State/County based code or analyses.<br>
 High traffic Wikipedia pages such as the ones being scraped here are meticulously moderated as well as frequently trolled: [See Wiki History](https://en.wikipedia.org/w/index.php?title=List_of_states_and_territories_of_the_United_States_by_population&action=history)<br></br>
 
 It will be interesting to see if there are significant changes in population data from this source on a day-to-day basis.<br>
 Since this script saves each .csv by adding the date it is run, it will be easy to locate data discrepancies.<br></br>
 
-Due to the nature of HTML scraping, this script will not work as intended should a column be added to either WikiTable.<br>
+Due to the nature of HTML scraping, this script will not work as intended for BeautifulSoup should a column be added to either WikiTable.<br>
 As of 4.29.2021, there are no issues. I will be exploring possible routes for future-proofing that may require the use of every table header.<br></br>
 
 
