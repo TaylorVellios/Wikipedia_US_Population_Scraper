@@ -45,7 +45,7 @@ Output files will be saved in an automatically created directory named /Wikipedi
 ### Significance of Current Data - Warning of Future Issues
 The most surprising result of writing these scripts is the the speed differences between them.</br>
 As seen in the image above, the script based around BeautifulSoup takes ~2sec to complete while Pandas nears 3sec.</br>
-The lengths of these scrips is not even close.
+The lengths of these scripts is not even close.
 * Wikipedia_Population_Scraper_Soup.py ---> 212 Lines of Code
 * Wikipedia_Population_Scraper_Pandas.py ---> 73 Lines of Code
 
