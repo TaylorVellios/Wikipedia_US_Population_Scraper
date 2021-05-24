@@ -23,17 +23,17 @@ Requests| pip install requests
 
 </br>
 ### Results
-The following webpages contain population data for the US by State, US by County, and World by Country. By running this script, you will receive filtered and modified copies of the wikitables available below:<br></br>
+The following webpages contain population data for the US by State, US by County, and World by Country. By running this script, you will receive filtered and modified copies of the wikitables available below:</br>
 [US State Population/Government Data](https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States_by_population)
 ![3](https://user-images.githubusercontent.com/14188580/115887729-d6360680-a417-11eb-967d-c5605ac6954f.PNG)
-
+</br>
 [US County Population Data](https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents)
 ![4](https://user-images.githubusercontent.com/14188580/115887739-d8986080-a417-11eb-9d50-5d4aad3bfe49.PNG)
-
+</br>
 [World Population Data](https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population)
 ![5](https://user-images.githubusercontent.com/14188580/115922069-072b3100-a442-11eb-8e38-d0d1f20da88b.PNG)
-
-<br></br>
+</br>
+</br>
 Output files will be saved in an automatically created directory named /Wikipedia_Data/ <br></br>
 #### Samples of .csv Outputs:
 ![1](https://user-images.githubusercontent.com/14188580/115888845-003bf880-a419-11eb-9fb6-1b5ddbd4eb8a.PNG)
@@ -42,7 +42,7 @@ Output files will be saved in an automatically created directory named /Wikipedi
 
 ![0](https://user-images.githubusercontent.com/14188580/115922081-0db9a880-a442-11eb-97b5-19e45da7d2b6.PNG)
 
-<br></br>
+</br>
 
 ## Significance of Current Data - Warning of Future Issues
 The most surprising result of writing these scripts is the the speed differences between them.</br>
