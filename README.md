@@ -55,11 +55,9 @@ While the practical use of each script is not greatly inhibited by an extra half
 
 ## Compatibility - Useability of Data
 Looking at US_County Data, I ran all 3245 rows of results through geopy to retrieve Latitude and Longitude coordinates with the goal of determining the useability of data.</br>
-111 results failed the geopy search, mostly from US Territories:</br>
-![failedgeopy](https://user-images.githubusercontent.com/14188580/119354427-b3db1700-bc69-11eb-970c-477ccd9dda1d.PNG)
 </br>
-The failed 
 To achieve a complete county coordinate dataset for the lower-48 States, only minor adjustments need to be made.</br>
+
 
 ![plot counties](https://user-images.githubusercontent.com/14188580/119355256-aa05e380-bc6a-11eb-9282-e5286501813f.PNG)
 </br>
