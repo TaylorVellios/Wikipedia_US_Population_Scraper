@@ -48,7 +48,7 @@ def US_Counties_Scrape():
 
     counties_dataframe['Population'] = counties_dataframe['Population'].str.replace(',','')
     counties_dataframe['Population'] = counties_dataframe['Population'].apply(pd.to_numeric)
-
+    counties_dataframe['State'] = counties_dataframe['State'].apply(lambda x: 'Hawaii' if x.startswith('Hawai') else x)
     return counties_dataframe
 
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -182,9 +182,9 @@ states_df = US_States_Scrape()
 world_df = world_population_scrape()
 today = datetime.datetime.strftime(datetime.datetime.now(),'%m-%d-%Y')
 
-counties_output_name = f'US_County_Population_WikiScrape_{today}.csv'
-states_output_name = f'US_State_Population_Gov_WikiScrape_{today}.csv'
-world_output_name = f'World_Population_WikiScrape_{today}.csv'
+counties_output_name = f'US_County_Population_WikiScrape_(BS4)_{today}.csv'
+states_output_name = f'US_State_Population_Gov_WikiScrape_(BS4)_{today}.csv'
+world_output_name = f'World_Population_WikiScrape_(BS4)_{today}.csv'
 
 if 'Wikipedia_Data' not in os.listdir():
     os.mkdir('Wikipedia_Data')

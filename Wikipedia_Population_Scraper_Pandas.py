@@ -18,6 +18,8 @@ def us_counties():
     counties = pd.read_html(target_url)[0]
 
     counties['County or equivalent'] = counties['County or equivalent'].str.replace('\[.+\]','', regex=True)
+    counties['State or equivalent'] = counties['State or equivalent'].apply(lambda x: 'Hawaii' if x.startswith('Hawai') else x)
+
     return counties
 
 def us_states():
@@ -50,21 +52,21 @@ if 'Wikipedia_Data' not in os.listdir():
     os.mkdir('Wikipedia_Data')
 
 try:
-    world.to_csv(f"Wikipedia_Data/World_Population_WikiScrape_{today}.csv")
+    world.to_csv(f"Wikipedia_Data/World_Population_WikiScrape_(PANDAS)_{today}.csv")
     print('Successfully Wrote World Population Data to /Wikipedia_Data')
 except:
     print('*****Failed to Write World Population Data*****')
     pass
 
 try:
-    counties.to_csv(f"Wikipedia_Data/US_Counties_Population_WikiScrape_{today}.csv")
+    counties.to_csv(f"Wikipedia_Data/US_Counties_Population_WikiScrape_(PANDAS)_{today}.csv")
     print('Successfully Wrote US County Population Data to /Wikipedia_Data')
 except:
     print('*****Failed to Write US County Population Data*****')
     pass
 
 try:
-    states.to_csv(f"Wikipedia_Data/US_States_Population_WikiScrape_{today}.csv")
+    states.to_csv(f"Wikipedia_Data/US_States_Population_WikiScrape_(PANDAS)_{today}.csv")
     print('Successfully Wrote US State Population Data to /Wikipedia_Data')
 except:
     print('*****Failed to Write World Population Data*****')
