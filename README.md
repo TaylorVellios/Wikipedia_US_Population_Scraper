@@ -15,10 +15,12 @@ This project was designed with two purposes in mind:
 ![Capture](https://user-images.githubusercontent.com/14188580/116706393-35a19280-a993-11eb-86ba-a1eb83a57edb.PNG)
 <br></br>
 ### Dependencies
-* BeautifulSoup
-* Pandas
-* Requests
-* os
+Library | Install
+--------|--------
+BeautifulSoup| pip install bs4
+Pandas| pip install pandas
+Requests| pip install requests
+
 <br></br>
 ### Results
 The following webpages contain population data for the US by State, US by County, and World by Country. By running this script, you will receive filtered and modified copies of the wikitables available below:<br></br>
